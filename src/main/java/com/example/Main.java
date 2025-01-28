@@ -1,0 +1,26 @@
+package com.example;
+
+import java.io.IOException;
+
+import com.example.initialization.JsonInitialization;
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
+
+public class Main {
+    public static void main(String[] args) throws StreamWriteException, DatabindException, IOException {
+        // Initialization
+        String user = "Test_TT.User";
+        String password = "abcdeABCDE1234";
+        initialization(user, password);
+
+        // Passwords Generator
+        // To update the .json of welltake password and backup because we save them in json file
+        System.out.println("Hello World");
+    }
+
+    public static void initialization(String user, String password) throws StreamWriteException, DatabindException, IOException {
+        JsonInitialization init = new JsonInitialization();
+        init.account_json_setup(user, password);
+        init.passwords_json_backup(password);
+    }
+}
