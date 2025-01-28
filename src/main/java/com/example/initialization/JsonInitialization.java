@@ -18,7 +18,7 @@ public class JsonInitialization {
 
     public void account_json_setup(String user, String password) throws StreamWriteException, DatabindException, IOException {
         Account account = new Account();
-        account.createAccount(user, password);
+        account = account.createAccount(user, password);
         // json writer
         JSON_CONTROLLER.jsonWriter(ACCOUNT_PATH, account);
         // json viewer
@@ -28,7 +28,7 @@ public class JsonInitialization {
 
     public void passwords_json_backup(String password) throws StreamWriteException, DatabindException, IOException {
         PasswordsBackUp passwordsBackUp = new PasswordsBackUp();
-        passwordsBackUp.createPasswordsBackup(password);
+        passwordsBackUp = passwordsBackUp.createPasswordsBackup(password);
         // json writer
         JSON_CONTROLLER.jsonWriter(PASSWORDS_BACKUP_PATH, passwordsBackUp);
         // json viewer

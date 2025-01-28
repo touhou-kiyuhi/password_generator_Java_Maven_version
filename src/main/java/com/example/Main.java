@@ -15,7 +15,6 @@ public class Main {
 
         // Passwords Generator
         // To update the .json of welltake password and backup because we save them in json file
-        System.out.println("Hello World");
     }
 
     public static void initialization(String user, String password) throws StreamWriteException, DatabindException, IOException {
