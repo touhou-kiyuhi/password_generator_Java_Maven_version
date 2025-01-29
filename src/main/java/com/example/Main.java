@@ -18,11 +18,11 @@ public class Main {
 
         // Passwords Generator
         int passwordLength = 20;
-        passwordGenerator(passwordLength);
+        password_generator(passwordLength);
 
         // To update the .json of the account and passwords_backup because we save them in json file
         password = "edcbaEDCBA4321";
-        updateJson(password);
+        update_json(password);
     }
 
     public static void initialization(String user, String password) throws StreamWriteException, DatabindException, IOException {
@@ -31,14 +31,14 @@ public class Main {
         init.passwords_json_backup(password);
     }
 
-    public static void passwordGenerator(int passwordLength) throws StreamReadException, DatabindException, IOException {
+    public static void password_generator(int passwordLength) throws StreamReadException, DatabindException, IOException {
         PasswordGenerator pwdGenerator = new PasswordGenerator();
         pwdGenerator.setPassword(passwordLength);
         String password = pwdGenerator.getPassword();
         System.out.println(password);
     }
 
-    public static void updateJson(String new_password) throws StreamReadException, DatabindException, IOException {
+    public static void update_json(String new_password) throws StreamReadException, DatabindException, IOException {
         JsonUpdate update = new JsonUpdate();
         update.accountJsonUpdate(new_password);
         update.backupJsonUpdate(new_password);
