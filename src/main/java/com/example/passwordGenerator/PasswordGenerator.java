@@ -1,4 +1,4 @@
-package com.example.password_generator;
+package com.example.passwordGenerator;
 
 import java.io.IOException;
 import java.util.ArrayList;

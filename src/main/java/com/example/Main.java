@@ -3,7 +3,7 @@ package com.example;
 import java.io.IOException;
 
 import com.example.initialization.JsonInitialization;
-import com.example.password_generator.PasswordGenerator;
+import com.example.passwordGenerator.PasswordGenerator;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
@@ -19,7 +19,7 @@ public class Main {
         int passwordLength = 20;
         passwordGenerator(passwordLength);
 
-        // To update the .json of welltake password and backup because we save them in json file
+        // To update the .json of the account and passwords_backup because we save them in json file
     }
 
     public static void initialization(String user, String password) throws StreamWriteException, DatabindException, IOException {
