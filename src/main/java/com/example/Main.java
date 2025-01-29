@@ -3,6 +3,7 @@ package com.example;
 import java.io.IOException;
 
 import com.example.initialization.JsonInitialization;
+import com.example.jsonUpdate.JsonUpdate;
 import com.example.passwordGenerator.PasswordGenerator;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
@@ -20,6 +21,8 @@ public class Main {
         passwordGenerator(passwordLength);
 
         // To update the .json of the account and passwords_backup because we save them in json file
+        password = "edcbaEDCBA4321";
+        updateJson(password);
     }
 
     public static void initialization(String user, String password) throws StreamWriteException, DatabindException, IOException {
@@ -33,5 +36,11 @@ public class Main {
         pwdGenerator.setPassword(passwordLength);
         String password = pwdGenerator.getPassword();
         System.out.println(password);
+    }
+
+    public static void updateJson(String new_password) throws StreamReadException, DatabindException, IOException {
+        JsonUpdate update = new JsonUpdate();
+        update.accountJsonUpdate(new_password);
+        update.backupJsonUpdate(new_password);
     }
 }
