@@ -23,6 +23,7 @@ public class PasswordGenerator extends JsonControllerInit {
     private List<String> passwordsBackupElements = new ArrayList<>();
 
     // 密碼
+    private List<Character> passwordList = new ArrayList<>();
     private String password = "";
     // 密碼長度
     private int passwordLength;
@@ -124,6 +125,15 @@ public class PasswordGenerator extends JsonControllerInit {
     }
 
     // 密碼 
+    public List<Character> getPasswordList() {
+        return passwordList;
+    }
+    private void setPasswordList() {
+        passwordList.addAll(lowerAlphabets);
+        passwordList.addAll(upperAlphabets);
+        passwordList.addAll(numbers);
+        passwordList.addAll(symbols);
+    }
     public String getPassword() {
         return password;
     }
@@ -142,6 +152,12 @@ public class PasswordGenerator extends JsonControllerInit {
         setLowerAlphabets();
         setNumbers();
         setSymbols();
+
+        setPasswordList();
+        for (char c: passwordList) {
+            String s = String.valueOf(c);
+            this.password += s;
+        }
     }
     public int getPasswordLength() {
         return passwordLength;

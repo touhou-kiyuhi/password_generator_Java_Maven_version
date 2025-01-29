@@ -41,5 +41,8 @@ public class Main {
         System.out.println(lowerAlphabets);
         System.out.println(numbers);
         System.out.println(symbols);
+
+        String password = pwdGenerator.getPassword();
+        System.out.println(password);
     }
 }
