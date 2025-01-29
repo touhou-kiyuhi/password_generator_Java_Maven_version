@@ -1,7 +1,6 @@
 package com.example;
 
 import java.io.IOException;
-import java.util.List;
 
 import com.example.initialization.JsonInitialization;
 import com.example.password_generator.PasswordGenerator;
@@ -34,12 +33,5 @@ public class Main {
         pwdGenerator.setPassword(passwordLength);
         String password = pwdGenerator.getPassword();
         System.out.println(password);
-
-        password = "Test_TT.User";
-        System.out.println(pwdGenerator.checkPasswordSubstringsNotInUserName(password));
-        password = "abcdeABCDE1234";
-        System.out.println(pwdGenerator.checkPasswordNotInPasswordsBackupElements(password));
-        List<String> passwordsBackupElements = pwdGenerator.getPasswordsBackupElements();
-        System.out.println(passwordsBackupElements);
     }
 }

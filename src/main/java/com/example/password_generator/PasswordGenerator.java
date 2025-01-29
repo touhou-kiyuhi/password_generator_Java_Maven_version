@@ -150,7 +150,7 @@ public class PasswordGenerator extends JsonControllerInit {
             // 密碼不為空字串
             // 密碼中，不可包含帳號相關字眼
             // 確認密碼不存在於備份密碼中
-            if (password != "") {
+            if (password != "" && checkPasswordSubstringsNotInUserName() && checkPasswordNotInPasswordsBackupElements()) {
                 break;
             }
             // 英文大寫字元 (A 到 Z)、英文小寫字元 (a 到 z)、10 進位數字 (0 到 9)、非英文字母字元 (例如: !、$、#、%)
@@ -179,7 +179,7 @@ public class PasswordGenerator extends JsonControllerInit {
 
     // Others
     // 密碼中，不可包含帳號相關字眼
-    public boolean checkPasswordSubstringsNotInUserName(String password) {
+    private boolean checkPasswordSubstringsNotInUserName() {
         String passwordSubstring;
         for (int i = 0; i < passwordLength - 3; i++) {
             passwordSubstring = password.substring(i, i + 3);
@@ -190,7 +190,7 @@ public class PasswordGenerator extends JsonControllerInit {
         return true;
     }
     // 確認密碼不存在於備份密碼中
-    public boolean checkPasswordNotInPasswordsBackupElements(String password) {
+    private boolean checkPasswordNotInPasswordsBackupElements() {
         for (String s: passwordsBackupElements) {
             if (password.contains(s)) {
                 return false;
