@@ -29,11 +29,17 @@ public class Main {
 
     public static void passwordGenerator() throws StreamReadException, DatabindException, IOException {
         PasswordGenerator pwdGenerator = new PasswordGenerator();
-        pwdGenerator.setPassword();
+        int passwordLength = 20;
+        pwdGenerator.setPassword(passwordLength);
 
-        String userName = pwdGenerator.getUserName();
-        System.out.println(userName);
-        List<String> passwordBackUpElements = pwdGenerator.getPasswordsBackupElements();
-        System.out.println(passwordBackUpElements);
+        List<Character>upperAlphabets = pwdGenerator.getUpperAlphabets(); 
+        List<Character>lowerAlphabets = pwdGenerator.getLowerAlphabets();
+        List<Character>numbers = pwdGenerator.getNumbers();
+        List<Character>symbols = pwdGenerator.getSymbols();
+
+        System.out.println(upperAlphabets);
+        System.out.println(lowerAlphabets);
+        System.out.println(numbers);
+        System.out.println(symbols);
     }
 }
