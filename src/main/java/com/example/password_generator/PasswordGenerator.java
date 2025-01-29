@@ -116,8 +116,8 @@ public class PasswordGenerator extends JsonControllerInit {
             for (int i = 0; i < symbolsLength; i++) {
                 symbols.add(symbolsElements.get(RANDOM.nextInt(symbolsElements.size())));
             }
-            // 檢查各個元素出現次數是否小於 3
-            if (checkItemsNotTriplicate(symbols)) {
+            // 確認一字元不能重複出現三次
+            if (checkCharactersNotTriplicate(symbols)) {
                 break;
             }
             symbols.clear();
@@ -146,17 +146,24 @@ public class PasswordGenerator extends JsonControllerInit {
         // 使用者名稱、備份密碼 元素
         setUserName();
         setPasswordsBackupElements();
+        while (true) {
+            // 密碼不為空字串
+            // 密碼中，不可包含帳號相關字眼
+            // 確認密碼不存在於備份密碼中
+            if (password != "") {
+                break;
+            }
+            // 英文大寫字元 (A 到 Z)、英文小寫字元 (a 到 z)、10 進位數字 (0 到 9)、非英文字母字元 (例如: !、$、#、%)
+            setUpperAlphabets();
+            setLowerAlphabets();
+            setNumbers();
+            setSymbols();
 
-        // 英文大寫字元 (A 到 Z)、英文小寫字元 (a 到 z)、10 進位數字 (0 到 9)、非英文字母字元 (例如: !、$、#、%)
-        setUpperAlphabets();
-        setLowerAlphabets();
-        setNumbers();
-        setSymbols();
-
-        setPasswordList();
-        for (char c: passwordList) {
-            String s = String.valueOf(c);
-            this.password += s;
+            setPasswordList();
+            for (char c: passwordList) {
+                String s = String.valueOf(c);
+                this.password += s;
+            }
         }
     }
     public int getPasswordLength() {
@@ -171,7 +178,28 @@ public class PasswordGenerator extends JsonControllerInit {
     }
 
     // Others
-    private boolean checkItemsNotTriplicate(List<Character> lst) {
+    // 密碼中，不可包含帳號相關字眼
+    public boolean checkPasswordSubstringsNotInUserName(String password) {
+        String passwordSubstring;
+        for (int i = 0; i < passwordLength - 3; i++) {
+            passwordSubstring = password.substring(i, i + 3);
+            if (userName.contains(passwordSubstring)) {
+                return false;
+            } 
+        }
+        return true;
+    }
+    // 確認密碼不存在於備份密碼中
+    public boolean checkPasswordNotInPasswordsBackupElements(String password) {
+        for (String s: passwordsBackupElements) {
+            if (password.contains(s)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    // 確認一字元不能重複出現三次
+    private boolean checkCharactersNotTriplicate(List<Character> lst) {
         // 建立 Map 計算字母出現次數
         Map<Character, Integer> lstMap = new HashMap<>();
         for (char c: lst) {
@@ -191,13 +219,14 @@ public class PasswordGenerator extends JsonControllerInit {
         }
         return true;
     }
+    // 英文大寫字元 (A 到 Z)、英文小寫字元 (a 到 z)、10 進位數字 (0 到 9) 生成器
     private void generator(int length, List<Character> lst, int rangeFirst, int rangeLast) {
         while (true) {
             for (int i = 0; i < length; i++) {
                 lst.add((char) ((int) (RANDOM.nextInt(rangeLast - rangeFirst + 1) + rangeFirst)));
             }
-            // 檢查各個元素出現次數是否小於 3
-            if (checkItemsNotTriplicate(lst)) {
+            // 確認一字元不能重複出現三次
+            if (checkCharactersNotTriplicate(lst)) {
                 break;
             }
             lst.clear();

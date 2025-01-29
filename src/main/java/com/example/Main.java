@@ -17,7 +17,9 @@ public class Main {
         initialization(user, password);
 
         // Passwords Generator
-        passwordGenerator();
+        int passwordLength = 20;
+        passwordGenerator(passwordLength);
+
         // To update the .json of welltake password and backup because we save them in json file
     }
 
@@ -27,22 +29,17 @@ public class Main {
         init.passwords_json_backup(password);
     }
 
-    public static void passwordGenerator() throws StreamReadException, DatabindException, IOException {
+    public static void passwordGenerator(int passwordLength) throws StreamReadException, DatabindException, IOException {
         PasswordGenerator pwdGenerator = new PasswordGenerator();
-        int passwordLength = 20;
         pwdGenerator.setPassword(passwordLength);
-
-        List<Character>upperAlphabets = pwdGenerator.getUpperAlphabets(); 
-        List<Character>lowerAlphabets = pwdGenerator.getLowerAlphabets();
-        List<Character>numbers = pwdGenerator.getNumbers();
-        List<Character>symbols = pwdGenerator.getSymbols();
-
-        System.out.println(upperAlphabets);
-        System.out.println(lowerAlphabets);
-        System.out.println(numbers);
-        System.out.println(symbols);
-
         String password = pwdGenerator.getPassword();
         System.out.println(password);
+
+        password = "Test_TT.User";
+        System.out.println(pwdGenerator.checkPasswordSubstringsNotInUserName(password));
+        password = "abcdeABCDE1234";
+        System.out.println(pwdGenerator.checkPasswordNotInPasswordsBackupElements(password));
+        List<String> passwordsBackupElements = pwdGenerator.getPasswordsBackupElements();
+        System.out.println(passwordsBackupElements);
     }
 }
