@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.example.jsonFormat.Account;
-import com.example.jsonFormat.PasswordsBackUp;
+import com.example.jsonFormat.PasswordsBackup;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
@@ -32,8 +32,8 @@ public class JsonController {
                 Account account = MAPPER.readValue(new File(path), Account.class);
                 return account;
             case 1:
-                PasswordsBackUp passwordsBackUp = MAPPER.readValue(new File(path), PasswordsBackUp.class);
-                return passwordsBackUp;
+                PasswordsBackup passwordsBackup = MAPPER.readValue(new File(path), PasswordsBackup.class);
+                return passwordsBackup;
             default:
                 // error
                 System.out.println("ERROR!");

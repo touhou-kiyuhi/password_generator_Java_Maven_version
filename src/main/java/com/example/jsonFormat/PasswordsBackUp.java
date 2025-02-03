@@ -14,14 +14,14 @@ import java.util.Map;
 //         }
 //     ]
 // }
-public class PasswordsBackUp {
+public class PasswordsBackup {
     private int length;
     private List<Map<String, Object>>account_passwords;
 
     // Constructor
-    public PasswordsBackUp() {}
+    public PasswordsBackup() {}
 
-    public PasswordsBackUp(int length, List<Map<String, Object>>account_passwords) {
+    public PasswordsBackup(int length, List<Map<String, Object>>account_passwords) {
         this.length = length;
         this.account_passwords = account_passwords;
     }
@@ -44,19 +44,19 @@ public class PasswordsBackUp {
     }
 
     // Creator 
-    public PasswordsBackUp createPasswordsBackup(String password) {
-        PasswordsBackUp passwordsBackUp = new PasswordsBackUp();
+    public PasswordsBackup createPasswordsBackup(String password) {
+        PasswordsBackup passwordsBackup = new PasswordsBackup();
 
         length = 1;
-        passwordsBackUp.setLength(length);
+        passwordsBackup.setLength(length);
 
         List<Map<String, Object>>account_passwords_List = new ArrayList<>();
         Map<String, Object>account_passwords_List_Map = new HashMap<>();
         account_passwords_List_Map.put("number", 0);
         account_passwords_List_Map.put("password", password);
         account_passwords_List.add(account_passwords_List_Map);
-        passwordsBackUp.setAccount_passwords(account_passwords_List);
+        passwordsBackup.setAccount_passwords(account_passwords_List);
 
-        return passwordsBackUp;
+        return passwordsBackup;
     }
 }

@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.example.jsonControllerInitialization.JsonControllerInit;
 import com.example.jsonFormat.Account;
-import com.example.jsonFormat.PasswordsBackUp;
+import com.example.jsonFormat.PasswordsBackup;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 
@@ -25,12 +25,12 @@ public class JsonInitialization extends JsonControllerInit {
     }
 
     public void passwords_json_backup(String password) throws StreamWriteException, DatabindException, IOException {
-        PasswordsBackUp passwordsBackUp = new PasswordsBackUp();
-        passwordsBackUp = passwordsBackUp.createPasswordsBackup(password);
+        PasswordsBackup passwordsBackup = new PasswordsBackup();
+        passwordsBackup = passwordsBackup.createPasswordsBackup(password);
         // json writer
-        JSON_CONTROLLER.jsonWriter(PASSWORDS_BACKUP_PATH, passwordsBackUp);
+        JSON_CONTROLLER.jsonWriter(PASSWORDS_BACKUP_PATH, passwordsBackup);
         // json viewer
-        PasswordsBackUp data = (PasswordsBackUp) JSON_CONTROLLER.jsonReader(PASSWORDS_BACKUP_PATH, 1);
+        PasswordsBackup data = (PasswordsBackup) JSON_CONTROLLER.jsonReader(PASSWORDS_BACKUP_PATH, 1);
         JSON_CONTROLLER.jsonViewer(data, 1);
     }
 }
