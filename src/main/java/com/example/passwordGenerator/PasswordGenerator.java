@@ -9,11 +9,12 @@ import java.util.Random;
 
 import com.example.jsonControllerInitialization.JsonControllerInit;
 import com.example.jsonFormat.Account;
+import com.example.jsonFormat.JsonType;
 import com.example.jsonFormat.PasswordsBackup;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 
-public class PasswordGenerator extends JsonControllerInit {
+public class PasswordGenerator implements JsonControllerInit {
 
     private final Random RANDOM = new Random();
     // 使用者名稱、備份密碼 元素
@@ -46,8 +47,8 @@ public class PasswordGenerator extends JsonControllerInit {
     // Constructor
     public PasswordGenerator() throws StreamReadException, DatabindException, IOException {
         super();
-        this.account = (Account) JSON_CONTROLLER.jsonReader(ACCOUNT_PATH, 0);
-        this.passwordsBackup = (PasswordsBackup) JSON_CONTROLLER.jsonReader(PASSWORDS_BACKUP_PATH, 1);
+        this.account = (Account) JSON_CONTROLLER.jsonReader(ACCOUNT_PATH, JsonType.ACCOUNT);
+        this.passwordsBackup = (PasswordsBackup) JSON_CONTROLLER.jsonReader(PASSWORDS_BACKUP_PATH, JsonType.PASSWORDSBACKUP);
         setSymbolsElements();
     }
 

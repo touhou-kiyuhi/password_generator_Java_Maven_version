@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.example.jsonFormat.Account;
+import com.example.jsonFormat.JsonType;
 import com.example.jsonFormat.PasswordsBackup;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.exc.StreamReadException;
@@ -25,13 +26,13 @@ public class JsonController {
         PRINTER.indentArraysWith(INDENTER);
     }
 
-    public Object jsonReader(String path, int number) throws StreamReadException, DatabindException, IOException {
+    public Object jsonReader(String path, JsonType jsonType) throws StreamReadException, DatabindException, IOException {
         // Convert JSON file to Java object
-        switch (number) {
-            case 0:
+        switch (jsonType) {
+            case ACCOUNT:
                 Account account = MAPPER.readValue(new File(path), Account.class);
                 return account;
-            case 1:
+            case PASSWORDSBACKUP:
                 PasswordsBackup passwordsBackup = MAPPER.readValue(new File(path), PasswordsBackup.class);
                 return passwordsBackup;
             default:
@@ -46,14 +47,14 @@ public class JsonController {
         // notice: write Java object to JSON file with pretty print
     }
 
-    public void jsonViewer(Object data, int number) throws JsonProcessingException {
-        switch (number) {
-            case 0:
+    public void jsonViewer(Object data, JsonViewerType jsonViewerType) throws JsonProcessingException {
+        switch (jsonViewerType) {
+            case DEFAULT:
                 // convert Java object to JSON string - default compact-print
                 String jsonString = MAPPER.writeValueAsString(data);
                 System.out.println(jsonString);
                 break;
-            case 1:
+            case PRETTY:
                 // convert Java object to JSON string - with json pretty-print
                 String jsonStringPrettyPrint = MAPPER.writer(PRINTER).writeValueAsString(data);
                 System.out.println(jsonStringPrettyPrint);
@@ -63,5 +64,9 @@ public class JsonController {
                 System.out.println("ERROR!");
                 break;
         }
+    }
+
+    public enum JsonViewerType{
+        DEFAULT, PRETTY
     }
 }
