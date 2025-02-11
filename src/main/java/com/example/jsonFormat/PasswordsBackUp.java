@@ -59,4 +59,21 @@ public class PasswordsBackup {
 
         return passwordsBackup;
     }
+
+    // 新增密碼到備份密碼
+    public PasswordsBackup addPasswordsBackup(PasswordsBackup backupData, String new_password) {
+        PasswordsBackup passwordsBackup = new PasswordsBackup();
+
+        int length = backupData.getLength() + 1;
+        passwordsBackup.setLength(length);
+
+        List<Map<String, Object>>account_passwords_List = backupData.getAccount_passwords();
+        Map<String, Object>account_passwords_List_Map = new HashMap<>();
+        account_passwords_List_Map.put("number", length - 1);
+        account_passwords_List_Map.put("password", new_password);
+        account_passwords_List.add(account_passwords_List_Map);
+        passwordsBackup.setAccount_passwords(account_passwords_List);
+
+        return passwordsBackup;
+    }
 }

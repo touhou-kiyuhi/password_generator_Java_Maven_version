@@ -1,9 +1,6 @@
 package com.example.jsonUpdate;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import com.example.jsonControllerInitialization.JsonControllerInit;
 import com.example.jsonFormat.Account;
@@ -43,7 +40,7 @@ public class JsonUpdate extends JsonControllerInit{
             System.out.println("the password exists in the passwords_backup.json");
         } else {
             // 新增密碼到備份密碼
-            passwordsBackup = addPasswordsBackup(new_password);
+            passwordsBackup = passwordsBackup.addPasswordsBackup(backupData, new_password);
             // json writer
             JSON_CONTROLLER.jsonWriter(PASSWORDS_BACKUP_PATH, passwordsBackup);
         }
@@ -62,21 +59,5 @@ public class JsonUpdate extends JsonControllerInit{
             }
         }
         return dataExistedFlag;
-    }
-    // 新增密碼到備份密碼
-    private PasswordsBackup addPasswordsBackup(String new_password) {
-        PasswordsBackup passwordsBackup = new PasswordsBackup();
-
-        int length = backupData.getLength() + 1;
-        passwordsBackup.setLength(length);
-
-        List<Map<String, Object>>account_passwords_List = backupData.getAccount_passwords();
-        Map<String, Object>account_passwords_List_Map = new HashMap<>();
-        account_passwords_List_Map.put("number", length - 1);
-        account_passwords_List_Map.put("password", new_password);
-        account_passwords_List.add(account_passwords_List_Map);
-        passwordsBackup.setAccount_passwords(account_passwords_List);
-
-        return passwordsBackup;
     }
 }
