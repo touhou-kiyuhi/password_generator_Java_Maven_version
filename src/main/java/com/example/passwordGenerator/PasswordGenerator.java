@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import com.example.jsonController.JsonController;
 import com.example.jsonControllerInitialization.JsonControllerInit;
 import com.example.jsonFormat.Account;
 import com.example.jsonFormat.JsonType;
@@ -47,8 +48,8 @@ public class PasswordGenerator implements JsonControllerInit {
     // Constructor
     public PasswordGenerator() throws StreamReadException, DatabindException, IOException {
         super();
-        this.account = (Account) JSON_CONTROLLER.jsonReader(ACCOUNT_PATH, JsonType.ACCOUNT);
-        this.passwordsBackup = (PasswordsBackup) JSON_CONTROLLER.jsonReader(PASSWORDS_BACKUP_PATH, JsonType.PASSWORDSBACKUP);
+        this.account = (Account) JsonController.START.jsonReader(ACCOUNT_PATH, JsonType.ACCOUNT);
+        this.passwordsBackup = (PasswordsBackup) JsonController.START.jsonReader(PASSWORDS_BACKUP_PATH, JsonType.PASSWORDSBACKUP);
         setSymbolsElements();
     }
 

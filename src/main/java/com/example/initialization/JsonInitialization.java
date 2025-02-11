@@ -2,6 +2,7 @@ package com.example.initialization;
 
 import java.io.IOException;
 
+import com.example.jsonController.JsonController;
 import com.example.jsonControllerInitialization.JsonControllerInit;
 import com.example.jsonFormat.Account;
 import com.example.jsonFormat.JsonType;
@@ -17,19 +18,19 @@ public class JsonInitialization implements JsonControllerInit {
         Account account = new Account();
         account = account.createAccount(user, password);
         // json writer
-        JSON_CONTROLLER.jsonWriter(ACCOUNT_PATH, account);
+        JsonController.START.jsonWriter(ACCOUNT_PATH, account);
         // json viewer
-        Account data = (Account) JSON_CONTROLLER.jsonReader(ACCOUNT_PATH, JsonType.ACCOUNT);
-        JSON_CONTROLLER.jsonViewer(data, JSONVIEWER_TYPE);
+        Account data = (Account) JsonController.START.jsonReader(ACCOUNT_PATH, JsonType.ACCOUNT);
+        JsonController.START.jsonViewer(data, JSONVIEWER_TYPE);
     }
 
     public void passwords_json_backup(String password) throws StreamWriteException, DatabindException, IOException {
         PasswordsBackup passwordsBackup = new PasswordsBackup();
         passwordsBackup = passwordsBackup.createPasswordsBackup(password);
         // json writer
-        JSON_CONTROLLER.jsonWriter(PASSWORDS_BACKUP_PATH, passwordsBackup);
+        JsonController.START.jsonWriter(PASSWORDS_BACKUP_PATH, passwordsBackup);
         // json viewer
-        PasswordsBackup data = (PasswordsBackup) JSON_CONTROLLER.jsonReader(PASSWORDS_BACKUP_PATH, JsonType.PASSWORDSBACKUP);
-        JSON_CONTROLLER.jsonViewer(data, JSONVIEWER_TYPE);
+        PasswordsBackup data = (PasswordsBackup) JsonController.START.jsonReader(PASSWORDS_BACKUP_PATH, JsonType.PASSWORDSBACKUP);
+        JsonController.START.jsonViewer(data, JSONVIEWER_TYPE);
     }
 }

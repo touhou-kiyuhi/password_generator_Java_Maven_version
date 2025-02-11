@@ -14,14 +14,16 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class JsonController {
+public enum JsonController {
+    START;
+
     // Java object to JSON file - default compact-print
     private final ObjectMapper MAPPER = new ObjectMapper();
     // Setup a pretty printer with an indenter (indenter has 4 spaces in this case)
     private final DefaultPrettyPrinter.Indenter INDENTER = new DefaultIndenter("    ", DefaultIndenter.SYS_LF);
     private final DefaultPrettyPrinter PRINTER = new DefaultPrettyPrinter();
 
-    public JsonController() {
+    JsonController() {
         PRINTER.indentObjectsWith(INDENTER);
         PRINTER.indentArraysWith(INDENTER);
     }
@@ -47,8 +49,8 @@ public class JsonController {
         // notice: write Java object to JSON file with pretty print
     }
 
-    public void jsonViewer(Object data, JsonViewerType jsonViewerType) throws JsonProcessingException {
-        switch (jsonViewerType) {
+    public void jsonViewer(Object data, JsonViewerType jsonviewerType) throws JsonProcessingException {
+        switch (jsonviewerType) {
             case DEFAULT:
                 // convert Java object to JSON string - default compact-print
                 String jsonString = MAPPER.writeValueAsString(data);
@@ -65,7 +67,7 @@ public class JsonController {
                 break;
         }
     }
-
+    // JsonViewerType
     public enum JsonViewerType{
         DEFAULT, PRETTY
     }
