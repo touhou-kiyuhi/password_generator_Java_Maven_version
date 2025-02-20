@@ -2,9 +2,9 @@ package com.example;
 
 import java.io.IOException;
 
-import com.example.initialization.JsonInitialization;
-import com.example.jsonUpdate.JsonUpdate;
-import com.example.passwordGenerator.PasswordGenerator;
+import com.example.main_methods.initialize_json.InitializationOfJson;
+import com.example.main_methods.password_generator.PasswordGenerator;
+import com.example.main_methods.update_json.UpdateOfJson;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
@@ -14,7 +14,7 @@ public class Main {
         // Initialization
         String user = "Test_TT.User";
         String password = "abcdeABCDE1234";
-        initialization(user, password);
+        initialize_json(user, password);
 
         // Passwords Generator
         int passwordLength = 20;
@@ -25,21 +25,21 @@ public class Main {
         update_json(password);
     }
 
-    public static void initialization(String user, String password) throws StreamWriteException, DatabindException, IOException {
-        JsonInitialization init = new JsonInitialization();
+    public static void initialize_json(String user, String password) throws StreamWriteException, DatabindException, IOException {
+        InitializationOfJson init = new InitializationOfJson();
         init.account_json_setup(user, password);
         init.passwords_json_backup(password);
     }
 
     public static void password_generator(int passwordLength) throws StreamReadException, DatabindException, IOException {
-        PasswordGenerator pwdGenerator = new PasswordGenerator();
-        pwdGenerator.setPassword(passwordLength);
-        String password = pwdGenerator.getPassword();
+        PasswordGenerator generator = new PasswordGenerator();
+        generator.setPassword(passwordLength);
+        String password = generator.getPassword();
         System.out.println(password);
     }
 
     public static void update_json(String new_password) throws StreamReadException, DatabindException, IOException {
-        JsonUpdate update = new JsonUpdate();
+        UpdateOfJson update = new UpdateOfJson();
         update.accountJsonUpdate(new_password);
         update.backupJsonUpdate(new_password);
     }
