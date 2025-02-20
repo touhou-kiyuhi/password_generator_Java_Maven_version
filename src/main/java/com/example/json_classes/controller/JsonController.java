@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.IOException;
 
 import com.example.json_classes.format.Account;
-import com.example.json_classes.format.JsonType;
 import com.example.json_classes.format.PasswordsBackup;
-import com.example.json_classes.settings.JsonViewerType;
+import com.example.json_classes.type.JsonFormatType;
+import com.example.json_classes.type.JsonControllerViewerType;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
@@ -30,7 +30,7 @@ public enum JsonController implements Controller {
     }
 
     @Override
-    public Object jsonReader(String path, JsonType jsonType) throws StreamReadException, DatabindException, IOException {
+    public Object jsonReader(String path, JsonFormatType jsonType) throws StreamReadException, DatabindException, IOException {
         // Convert JSON file to Java object
         switch (jsonType) {
             case ACCOUNT:
@@ -53,7 +53,7 @@ public enum JsonController implements Controller {
     }
 
     @Override
-    public void jsonViewer(Object data, JsonViewerType jsonviewerType) throws JsonProcessingException {
+    public void jsonViewer(Object data, JsonControllerViewerType jsonviewerType) throws JsonProcessingException {
         switch (jsonviewerType) {
             case DEFAULT:
                 // convert Java object to JSON string - default compact-print

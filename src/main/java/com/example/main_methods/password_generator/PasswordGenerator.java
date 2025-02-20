@@ -9,9 +9,9 @@ import java.util.Random;
 
 import com.example.json_classes.controller.JsonController;
 import com.example.json_classes.format.Account;
-import com.example.json_classes.format.JsonType;
 import com.example.json_classes.format.PasswordsBackup;
 import com.example.json_classes.settings.JsonSettings;
+import com.example.json_classes.type.JsonFormatType;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 
@@ -48,8 +48,8 @@ public class PasswordGenerator implements JsonSettings {
     // Constructor
     public PasswordGenerator() throws StreamReadException, DatabindException, IOException {
         super();
-        this.account = (Account) JsonController.START.jsonReader(ACCOUNT_PATH, JsonType.ACCOUNT);
-        this.passwordsBackup = (PasswordsBackup) JsonController.START.jsonReader(PASSWORDS_BACKUP_PATH, JsonType.PASSWORDSBACKUP);
+        this.account = (Account) JsonController.START.jsonReader(ACCOUNT_PATH, JsonFormatType.ACCOUNT);
+        this.passwordsBackup = (PasswordsBackup) JsonController.START.jsonReader(PASSWORDS_BACKUP_PATH, JsonFormatType.PASSWORDSBACKUP);
         setSymbolsElements();
     }
 
