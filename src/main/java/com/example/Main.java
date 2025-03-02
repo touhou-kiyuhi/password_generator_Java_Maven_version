@@ -27,8 +27,8 @@ public class Main {
 
     public static void initialize_json(String user, String password) throws StreamWriteException, DatabindException, IOException {
         InitializationOfJson init = new InitializationOfJson();
-        init.account_json_setup(user, password);
-        init.passwords_json_backup(password);
+        init.setupAccountJson(user, password);
+        init.backupPasswordsJson(password);
     }
 
     public static void password_generator(int passwordLength) throws StreamReadException, DatabindException, IOException {
@@ -40,7 +40,7 @@ public class Main {
 
     public static void update_json(String new_password) throws StreamReadException, DatabindException, IOException {
         UpdateOfJson update = new UpdateOfJson();
-        update.accountJsonUpdate(new_password);
-        update.backupJsonUpdate(new_password);
+        update.updateAccountJson(new_password);
+        update.updateBackupJson(new_password);
     }
 }

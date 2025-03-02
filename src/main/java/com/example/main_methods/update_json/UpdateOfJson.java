@@ -29,7 +29,7 @@ public class UpdateOfJson implements JsonSettings{
         this.backupData = (PasswordsBackup) JsonController.START.jsonReader(PASSWORDS_BACKUP_PATH, JsonFormatType.PASSWORDSBACKUP);
     }
 
-    public void accountJsonUpdate(String new_password) throws StreamWriteException, DatabindException, IOException {
+    public void updateAccountJson(String new_password) throws StreamWriteException, DatabindException, IOException {
         String userName = accountData.getAccount().get("user");
         account = account.createAccount(userName, new_password);
         // json writer
@@ -39,7 +39,7 @@ public class UpdateOfJson implements JsonSettings{
         JsonController.START.jsonViewer(data, JSONVIEWER_TYPE);
     }
 
-    public void backupJsonUpdate(String new_password) throws StreamWriteException, DatabindException, IOException {
+    public void updateBackupJson(String new_password) throws StreamWriteException, DatabindException, IOException {
         // 檢查新密碼是否存在於備份密碼中
         boolean dataExistedFlag = checkNew_passwordInBackupDataPasswordsList(new_password);
 

@@ -20,7 +20,7 @@ public class InitializationOfJson implements JsonSettings {
         this.passwordsBackup = new PasswordsBackup();
     }
 
-    public void account_json_setup(String user, String password) throws StreamWriteException, DatabindException, IOException {
+    public void setupAccountJson(String user, String password) throws StreamWriteException, DatabindException, IOException {
         account = account.createAccount(user, password);
         // json writer
         JsonController.START.jsonWriter(ACCOUNT_PATH, account);
@@ -29,7 +29,7 @@ public class InitializationOfJson implements JsonSettings {
         JsonController.START.jsonViewer(data, JSONVIEWER_TYPE);
     }
 
-    public void passwords_json_backup(String password) throws StreamWriteException, DatabindException, IOException {
+    public void backupPasswordsJson(String password) throws StreamWriteException, DatabindException, IOException {
         passwordsBackup = passwordsBackup.createPasswordsBackup(password);
         // json writer
         JsonController.START.jsonWriter(PASSWORDS_BACKUP_PATH, passwordsBackup);
